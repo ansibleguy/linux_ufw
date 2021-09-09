@@ -1,0 +1,65 @@
+---
+
+- name: "UFW | Rule | Processing rule '{{ rule.key }}'"
+  community.general.ufw:
+    rule: "{{ rule.value.rule | default(ufw_rule_defaults.rule) }}"
+    proto: "{{ rule.value.proto | default(ufw_rule_defaults.proto) }}"
+    log: "{{ rule.value.log | default(ufw_rule_defaults.log) }}"
+    from_ip: "{{ rule.value.from_ip | default(ufw_rule_defaults.from_ip) }}"
+    to_ip: "{{ rule.value.to_ip | default(ufw_rule_defaults.to_ip) }}"
+    comment: "{{ rule.value.comment | default(ufw_rule_defaults.comment + rule.key) }}"
+    direction: "{{ rule.value.direction | default(ufw_rule_defaults.direction) }}"
+    port: "{{ rule.value.port }}"
+    delete: "{{ delete_rule }}"
+  notify: reload_ufw
+  when:
+    - rule.value.port is defined
+    - rule.value.insert is undefined
+
+- name: "UFW | Rule | Processing rule '{{ rule.key }}' (w/o port restriction)"
+  community.general.ufw:
+    rule: "{{ rule.value.rule | default(ufw_rule_defaults.rule) }}"
+    proto: "{{ rule.value.proto | default(ufw_rule_defaults.proto) }}"
+    log: "{{ rule.value.log | default(ufw_rule_defaults.log) }}"
+    from_ip: "{{ rule.value.from_ip | default(ufw_rule_defaults.from_ip) }}"
+    to_ip: "{{ rule.value.to_ip | default(ufw_rule_defaults.to_ip) }}"
+    comment: "{{ rule.value.comment | default(ufw_rule_defaults.comment + rule.key) }}"
+    direction: "{{ rule.value.direction | default(ufw_rule_defaults.direction) }}"
+    delete: "{{ delete_rule }}"
+  notify: reload_ufw
+  when:
+    - rule.value.port is undefined
+    - rule.value.insert is undefined
+
+- name: "UFW | Rule | Processing rule '{{ rule.key }}' (at custom position)"
+  community.general.ufw:
+    rule: "{{ rule.value.rule | default(ufw_rule_defaults.rule) }}"
+    proto: "{{ rule.value.proto | default(ufw_rule_defaults.proto) }}"
+    log: "{{ rule.value.log | default(ufw_rule_defaults.log) }}"
+    from_ip: "{{ rule.value.from_ip | default(ufw_rule_defaults.from_ip) }}"
+    to_ip: "{{ rule.value.to_ip | default(ufw_rule_defaults.to_ip) }}"
+    comment: "{{ rule.value.comment | default(ufw_rule_defaults.comment + rule.key) }}"
+    direction: "{{ rule.value.direction | default(ufw_rule_defaults.direction) }}"
+    insert: "{{ rule.value.insert | default(rule.value.position) }}"
+    port: "{{ rule.value.port }}"
+    delete: "{{ delete_rule }}"
+  notify: reload_ufw
+  when:
+    - rule.value.port is defined
+    - rule.value.insert is defined or rule.value.position is defined
+
+- name: "UFW | Rule | Processing rule '{{ rule.key }}' (w/o port restriction at custom position)"
+  community.general.ufw:
+    rule: "{{ rule.value.rule | default(ufw_rule_defaults.rule) }}"
+    proto: "{{ rule.value.proto | default(ufw_rule_defaults.proto) }}"
+    log: "{{ rule.value.log | default(ufw_rule_defaults.log) }}"
+    from_ip: "{{ rule.value.from_ip | default(ufw_rule_defaults.from_ip) }}"
+    to_ip: "{{ rule.value.to_ip | default(ufw_rule_defaults.to_ip) }}"
+    comment: "{{ rule.value.comment | default(ufw_rule_defaults.comment + rule.key) }}"
+    direction: "{{ rule.value.direction | default(ufw_rule_defaults.direction) }}"
+    insert: "{{ rule.value.insert | default(rule.value.position) }}"
+    delete: "{{ delete_rule }}"
+  notify: reload_ufw
+  when:
+    - rule.value.port is undefined
+    - rule.value.insert is defined or rule.value.position is defined

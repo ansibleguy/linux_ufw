@@ -1,0 +1,15 @@
+---
+
+- name: UFW | Stateless | Reset rules
+  community.general.ufw:
+    state: reset
+
+- name: UFW | Stateless | Processing rules to add
+  include_tasks: rule/main.yml
+  loop_control:
+    loop_var: rule
+  args:
+      apply:
+        vars:
+          delete_rule: false
+  with_dict: "{{ ufw_rules }}"

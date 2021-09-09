@@ -1,0 +1,49 @@
+---
+
+- name: UFW | Fail if no rules are defined
+  fail:
+    msg: 'You must define at least one rule to set-up'
+  when: ufw_rules == None or ufw_rules|length == 0
+
+- name: UFW | Install package
+  apt:
+    name: ['ufw']
+    state: present
+
+- name: UFW | Set defaults
+  template:
+    src: 'templates/etc/default/ufw.j2'
+    dest: '/etc/default/ufw'
+    owner: 'root'
+    group: 'root'
+    mode: 0644
+  when: ufw_base_config
+  notify: reload_ufw
+
+- name: UFW | Stateless rules
+  import_tasks: stateless.yml
+  when:
+    - (reset_rules is defined and reset_rules) or (stateless is defined and stateless)
+    - ufw_rules is defined
+    - ufw_rules | length > 0
+
+- name: UFW | Checking ssh rule
+  include_tasks: rule/ssh.yml
+  when: ufw_ssh_rule
+
+- name: UFW | Stateful rules
+  import_tasks: stateful.yml
+  when:
+    - (reset_rules is defined and not reset_rules) or (stateful is defined and stateful)
+    - ufw_rules is defined
+    - ufw_rules | length > 0
+
+- name: UFW | Set logging
+  community.general.ufw:
+    logging: "{{ ufw_logging }}"
+  when: ufw_base_config
+  notify: reload_ufw
+
+- name: UFW | Enable ufw
+  community.general.ufw:
+    state: enabled

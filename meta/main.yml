@@ -1,0 +1,15 @@
+---
+
+galaxy_info:
+  author: 'AnsibleGuy'
+  description: 'UFW role'
+  platforms:
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags:
+    - 'ufw'
+    - 'firewall'
