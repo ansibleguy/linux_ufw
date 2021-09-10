@@ -55,5 +55,6 @@
           value:
             proto: 'tcp'
             port: "{{ ssh_port }}"
+            rule: 'limit'  # ddos prevention
         delete_rule: false
   when: add_ssh_rule
