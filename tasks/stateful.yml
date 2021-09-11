@@ -1,7 +1,7 @@
 ---
 
 - name: UFW | Stateful | Processing rules to add
-  include_tasks: rule/main.yml
+  ansible.builtin.include_tasks: rule/main.yml
   args:
       apply:
         vars:
@@ -15,7 +15,7 @@
     (rule.value.state is undefined and rule.value.present is undefined)
 
 - name: UFW | Stateful | Processing rules to delete
-  include_tasks: rule/main.yml
+  ansible.builtin.include_tasks: rule/main.yml
   args:
       apply:
         vars:

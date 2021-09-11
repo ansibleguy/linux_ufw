@@ -5,7 +5,7 @@
     state: reset
 
 - name: UFW | Stateless | Processing rules to add
-  include_tasks: rule/main.yml
+  ansible.builtin.include_tasks: rule/main.yml
   loop_control:
     loop_var: rule
   args:
