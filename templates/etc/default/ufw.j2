@@ -1,10 +1,10 @@
-# {{ ansible_managed }}
+# {{ ansible_managed }} - role {{ role_name }}
 
-IPV6={{ ufw_ipv6 }}
-DEFAULT_INPUT_POLICY="{{ policy_input }}"
-DEFAULT_OUTPUT_POLICY="{{ policy_output }}"
-DEFAULT_FORWARD_POLICY="{{ policy_forward }}"
-DEFAULT_APPLICATION_POLICY="{{ policy_application }}"
+IPV6={{ ufw_config.ipv6 | default(default_ufw_config.ipv6) }}
+DEFAULT_INPUT_POLICY="{{ ufw_config.policy_input | default(default_ufw_config.policy_input) }}"
+DEFAULT_OUTPUT_POLICY="{{ ufw_config.policy_output | default(default_ufw_config.policy_output) }}"
+DEFAULT_FORWARD_POLICY="{{ ufw_config.policy_forward | default(default_ufw_config.policy_forward) }}"
+DEFAULT_APPLICATION_POLICY="{{ ufw_config.policy_application | default(default_ufw_config.policy_application) }}"
 MANAGE_BUILTINS=no
 IPT_SYSCTL=/etc/ufw/sysctl.conf
 IPT_MODULES="nf_conntrack_ftp nf_nat_ftp nf_conntrack_netbios_ns"

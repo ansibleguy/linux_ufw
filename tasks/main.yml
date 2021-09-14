@@ -17,31 +17,31 @@
     owner: 'root'
     group: 'root'
     mode: 0644
-  when: ufw_base_config
+  when: configure_ufw_basics
   notify: reload_ufw
 
 - name: UFW | Stateless rules
   ansible.builtin.import_tasks: stateless.yml
   when:
-    - (reset_rules is defined and reset_rules) or (stateless is defined and stateless)
+    - (ufw_reset_rules is defined and ufw_reset_rules) or (ufw_stateless is defined and ufw_stateless)
     - ufw_rules is defined
     - ufw_rules | length > 0
 
 - name: UFW | Checking ssh rule
   ansible.builtin.import_tasks: rule/ssh.yml
-  when: ufw_ssh_rule
+  when: configure_ufw_ssh_rule
 
 - name: UFW | Stateful rules
   ansible.builtin.import_tasks: stateful.yml
   when:
-    - (reset_rules is defined and not reset_rules) or (stateful is defined and stateful)
+    - (ufw_reset_rules is defined and not ufw_reset_rules) or (ufw_stateful is defined and ufw_stateful)
     - ufw_rules is defined
     - ufw_rules | length > 0
 
 - name: UFW | Set logging
   community.general.ufw:
-    logging: "{{ ufw_logging }}"
-  when: ufw_base_config
+    logging: "{{ ufw_config.logging | default(default_ufw_config.logging) }}"
+  when: configure_ufw_basics
   notify: reload_ufw
 
 - name: UFW | Enable ufw

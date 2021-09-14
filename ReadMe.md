@@ -18,6 +18,9 @@ This ansible role will do:
 
 **Note:** Most of this functionality can be opted in or out using the main defaults file and variables!
 
+**Tested:**
+* Debian 11
+
 ## Usage
 
 Just define the 'ufw_rules' dictionary as needed:

@@ -1,32 +1,39 @@
 ---
 
+# empty config as fallback
 ufw_rules: {}
 
-ufw_base_config: true
-ufw_ssh_rule: true
+# main switches
+configure_ufw_basics: true
+configure_ufw_ssh_rule: true  # will check if ssh will be allowed by a rule => else it will add an anti-lockout rule
 
-# STATELESS RUN
-# if set to true:
-#   all existing rules will be deleted before the new ones get applied
-#   every run must apply ALL needed ufw rules
-#reset_rules: true
-#stateless: false
+# run-mode
+#   STATELESS RUN
+#     if set to true:
+#       all existing rules will be deleted before the new ones get applied
+#       every run must apply ALL needed ufw rules
+#ufw_reset_rules: true
+#ufw_stateless: false
 
-# STATEFUL RUN
-# if set to false:
-#   existing rules will persist
-#   the variable 'state' (present/absent) will be check per rule to decide if a rule should be created or deleted
-#reset_rules: false
-stateful: true
+#   STATEFUL RUN
+#     if set to false:
+#       existing rules will persist
+#       the variable 'state' (present/absent) will be check per rule to decide if a rule should be created or deleted
+#ufw_reset_rules: false
+ufw_stateful: true
 
-ufw_logging: 'off'
-ufw_ipv6: 'no'
-policy_input: 'ACCEPT'
-policy_output: 'ACCEPT'
-policy_forward: 'DROP'
-policy_application: 'SKIP'
+# main ufw config
+#   can be overwritten via 'ufw_config' dictionary-variable
+default_ufw_config:
+  logging: 'off'
+  ipv6: 'no'
+  policy_input: 'ACCEPT'
+  policy_output: 'ACCEPT'
+  policy_forward: 'DROP'
+  policy_application: 'SKIP'
 
-ufw_rule_defaults:
+# you shouldn't have a need to change these rule-defaults
+default_ufw_rule:
   rule: 'allow'
   proto: 'any'
   log: 'no'
