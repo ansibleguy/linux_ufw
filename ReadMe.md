@@ -61,9 +61,6 @@ Status: active
 ```
 
 **Config**
-* allow apache public and ipsec to peer
-* deny ntp
-* check that the dns-rule is absent
 ```yaml
 ufw_rules:
   # incoming traffic restrictions
