@@ -1,7 +1,11 @@
 ---
 
 galaxy_info:
-  author: 'AnsibleGuy'
+  authors: ['AnsibleGuy <guy@ansibleguy.net>']
+  readme: 'ReadMe.md'
+  license: ['MIT']
+  version: '1.0'
+  repository: 'https://github.com/ansibleguy/base-ufw'
   description: 'Role to install and configure ufw firewall-rules on a linux machine'
   platforms:
     - name: Debian
@@ -13,4 +17,4 @@ galaxy_info:
   galaxy_tags:
     - 'ufw'
     - 'firewall'
-    - 'software-firewall'
+    - 'softwarefirewall'
