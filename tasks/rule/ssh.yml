@@ -21,7 +21,7 @@
 
 - name: UFW | SSH-Rule | Configured ssh port does not match current one
   ansible.builtin.pause:
-    prompt: "The configured ssh port '{{ configured_ssh_port.stdout }}' does not match the current ssh port '{{ ssh_port }}' -
+    prompt: "The configured ssh port '{{ configured_ssh_port.stdout }}' does not match the current ansible_port '{{ ssh_port }}' -
     do you want to allow the connection for both ports? (YES/no)"
   register: ssh_rule_both_ports
   when: configured_ssh_port.stdout != ssh_port
