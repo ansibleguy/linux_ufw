@@ -21,6 +21,11 @@ This ansible role will do:
 **Tested:**
 * Debian 11
 
+## Requirements
+
+* Community collection: ```ansible-galaxy install -r requirements.yml```
+
+
 ## Usage
 
 Just define the 'ufw_rules' dictionary as needed:
@@ -43,6 +48,11 @@ or the compact way:
 ufw_rules: {
     ruleShortName: {rule: 'allow',  port: 80, proto: 'tcp', log: 'no', from_ip: 'any', to_ip: 'any', direction: 'in', state: 'present', position: 2, comment: 'You can overwrite the default comment'}
 }
+```
+
+Run the playbook:
+```bash
+ansible-playbook -K -D -i inventory/hosts.yml playbook.yml
 ```
 
 The ufw-task itself is '[community.general.ufw](https://docs.ansible.com/ansible/latest/collections/community/general/ufw_module.html)'
