@@ -58,4 +58,5 @@
             port: "{{ ssh_port }}"
             rule: 'limit'  # ddos prevention
         delete_rule: false
+  no_log: true
   when: add_ssh_rule

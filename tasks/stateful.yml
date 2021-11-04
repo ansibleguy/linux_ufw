@@ -9,6 +9,7 @@
   with_dict: "{{ ufw_rules }}"
   loop_control:
     loop_var: rule
+  no_log: true
   when: >
     (rule.value.state is defined and rule.value.state == 'present') or
     (rule.value.present is defined and rule.value.present) or
@@ -23,6 +24,7 @@
   with_dict: "{{ ufw_rules }}"
   loop_control:
     loop_var: rule
+  no_log: true
   when: >
     (rule.value.state is defined and rule.value.state == 'absent') or
     (rule.value.present is defined and not rule.value.present)

@@ -2,24 +2,39 @@
 
 Role to configure the ufw service.
 
-**Note:** this role currently only supports debian-based systems
+**Tested:**
+* Debian 11
+
 
 ## Functionality
 
 This ansible role will do:
-* UFW base-config
-* Verify that a ssh-rule is in place
-* Rules via using one of two modes
-  * The stateful way (*default*)
-    * keeps existing rules and adds/removes rules using a rule state
-  * The stateless way
-    * reset's the ufw state and rules every time
-    * after that the new rules get applied
+* **Package installation**
+  * UFW
 
-**Note:** Most of this functionality can be opted in or out using the main defaults file and variables!
 
-**Tested:**
-* Debian 11
+* **Configuration**
+  * Rules via using **one of two modes**
+    * The **stateful** way (_default_)
+      * keeps existing rules and adds/removes rules using a rule state
+    * The **stateless** way
+      * reset's the ufw state and rules every time
+      * after that the new rules get applied
+
+
+  * Verification that a ssh-rule is in place
+
+
+## Info
+
+* **Note:** Most of this functionality can be opted in or out using the main defaults file and variables!
+
+
+* **Note:** this role currently only supports debian-based systems
+
+
+* **Warning:** Not every setting/variable you provide will be checked for validity. Bad config might break the role!
+
 
 ## Requirements
 
