@@ -28,6 +28,8 @@ This ansible role will do:
 
 ## Usage
 
+### Config
+
 Just define the 'ufw_rules' dictionary as needed:
 ```yaml
 ufw_rules:
@@ -49,6 +51,8 @@ ufw_rules: {
     ruleShortName: {rule: 'allow',  port: 80, proto: 'tcp', log: 'no', from_ip: 'any', to_ip: 'any', direction: 'in', state: 'present', position: 2, comment: 'You can overwrite the default comment'}
 }
 ```
+
+### Execution
 
 Run the playbook:
 ```bash
