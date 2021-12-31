@@ -4,7 +4,7 @@
 
 - name: UFW | SSH-Rule | Setting defaults
   ansible.builtin.set_fact:
-    add_ssh_rule: false
+    add_ssh_rule: true
     ssh_port: "{{ ansible_port | default('22') }}"
 
 - name: UFW | SSH-Rule | Checking configured ssh port
@@ -29,7 +29,6 @@
 - name: UFW | SSH-Rule | Updating ssh port(s)
   ansible.builtin.set_fact:
     ssh_port: "{{ ssh_port }},{{ configured_ssh_port.stdout }}"
-    add_ssh_rule: true
   when:
     - ssh_rule_both_ports.user_input is defined
     - ssh_rule_both_ports.user_input in ['y', 'yes', 'Y', 'YES']
@@ -38,7 +37,6 @@
   ansible.builtin.set_fact:
     add_ssh_rule: false
   when:
-    - not add_ssh_rule
     - item.value.port is defined
     - item.value.port|int == ssh_port|int
     - item.value.proto is undefined or item.value.proto == 'tcp'
