@@ -1,9 +1,12 @@
 ---
 
-- name: UFW | Fail if no rules are defined
-  ansible.builtin.fail:
-    msg: 'You must define at least one rule to set-up'
-  when: ufw_rules == None or ufw_rules|length == 0
+- name: UFW | Notify if no rules are defined
+  ansible.builtin.pause:
+    prompt: 'You have not defined any ufw-rules! Only the generic ssh-rule will be processed. Do you want to continue?'
+  when: >
+    ufw_rules is undefined or 
+    ufw_rules is none or 
+    ufw_rules|length == 0
 
 - name: UFW | Install package
   ansible.builtin.apt:
