@@ -1,4 +1,4 @@
-# Ansible UFW role
+# Ansible Role - Uncomplicated Firewall (UFW)
 
 Ansible Role to deploy/configure the software firewall 'UFW' on a debian-based linux server.
 
