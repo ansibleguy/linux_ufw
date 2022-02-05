@@ -1,5 +1,7 @@
 ---
 
+# todo: refactor to use single dict
+
 # empty config as fallback
 ufw_rules: {}
 
@@ -12,14 +14,14 @@ configure_ufw_ssh_rule: true  # will check if ssh will be allowed by a rule => e
 #     if set to true:
 #       all existing rules will be deleted before the new ones get applied
 #       every run must apply ALL needed ufw rules
-#ufw_reset_rules: true
-#ufw_stateless: false
+# ufw_reset_rules: true
+# ufw_stateless: false
 
 #   STATEFUL RUN
 #     if set to false:
 #       existing rules will persist
 #       the variable 'state' (present/absent) will be check per rule to decide if a rule should be created or deleted
-#ufw_reset_rules: false
+# ufw_reset_rules: false
 ufw_stateful: true
 
 # main ufw config

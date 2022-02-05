@@ -2,10 +2,8 @@
 
 - name: UFW | Stateful | Processing rules to add
   ansible.builtin.include_tasks: rule/main.yml
-  args:
-      apply:
-        vars:
-          delete_rule: false
+  vars:
+    delete_rule: false
   with_dict: "{{ ufw_rules }}"
   loop_control:
     loop_var: rule
@@ -17,10 +15,8 @@
 
 - name: UFW | Stateful | Processing rules to delete
   ansible.builtin.include_tasks: rule/main.yml
-  args:
-      apply:
-        vars:
-          delete_rule: true
+  vars:
+    delete_rule: true
   with_dict: "{{ ufw_rules }}"
   loop_control:
     loop_var: rule

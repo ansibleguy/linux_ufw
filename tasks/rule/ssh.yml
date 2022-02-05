@@ -46,15 +46,13 @@
 
 - name: UFW | SSH-Rule | Adding ssh rule
   ansible.builtin.include_tasks: rule/main.yml
-  args:
-    apply:
-      vars:
-        rule:
-          key: 'default_ssh'
-          value:
-            proto: 'tcp'
-            port: "{{ ssh_port }}"
-            rule: 'limit'  # ddos prevention
-        delete_rule: false
+  vars:
+    rule:
+      key: 'default_ssh'
+      value:
+        proto: 'tcp'
+        port: "{{ ssh_port }}"
+        rule: 'limit'  # ddos prevention
+    delete_rule: false
   no_log: true
   when: add_ssh_rule

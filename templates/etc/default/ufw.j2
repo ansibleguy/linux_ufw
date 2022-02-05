@@ -1,5 +1,5 @@
 # {{ ansible_managed }}
-# ansibleguy.infra_ufw
+# ansibleguy.linux_ufw
 
 IPV6={{ ufw_config.ipv6 | default(default_ufw_config.ipv6) }}
 DEFAULT_INPUT_POLICY="{{ ufw_config.policy_input | default(default_ufw_config.policy_input) }}"

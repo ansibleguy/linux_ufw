@@ -8,9 +8,7 @@
   ansible.builtin.include_tasks: rule/main.yml
   loop_control:
     loop_var: rule
-  args:
-      apply:
-        vars:
-          delete_rule: false
+  vars:
+    delete_rule: false
   no_log: true
   with_dict: "{{ ufw_rules }}"
