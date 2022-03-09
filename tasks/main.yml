@@ -7,11 +7,13 @@
     ufw_rules is undefined or
     ufw_rules is none or
     ufw_rules|length == 0
+  tags: [ufw, firewall]
 
 - name: UFW | Install package
   ansible.builtin.apt:
     name: ['ufw']
     state: present
+  tags: [ufw, firewall]
 
 - name: UFW | Set defaults
   ansible.builtin.template:
@@ -22,6 +24,7 @@
     mode: 0644
   when: configure_ufw_basics
   notify: reload_ufw
+  tags: [ufw, firewall]
 
 - name: UFW | Stateless rules
   ansible.builtin.import_tasks: stateless.yml
@@ -29,10 +32,12 @@
     - (ufw_reset_rules is defined and ufw_reset_rules) or (ufw_stateless is defined and ufw_stateless)
     - ufw_rules is defined
     - ufw_rules | length > 0
+  tags: [ufw, firewall]
 
 - name: UFW | Checking ssh rule
   ansible.builtin.import_tasks: rule/ssh.yml
   when: configure_ufw_ssh_rule
+  tags: [ufw, firewall]
 
 - name: UFW | Stateful rules
   ansible.builtin.import_tasks: stateful.yml
@@ -40,13 +45,16 @@
     - (ufw_reset_rules is defined and not ufw_reset_rules) or (ufw_stateful is defined and ufw_stateful)
     - ufw_rules is defined
     - ufw_rules | length > 0
+  tags: [ufw, firewall]
 
 - name: UFW | Set logging
   community.general.ufw:
     logging: "{{ ufw_config.logging | default(default_ufw_config.logging) }}"
   when: configure_ufw_basics
   notify: reload_ufw
+  tags: [ufw, firewall]
 
 - name: UFW | Enable ufw
   community.general.ufw:
     state: enabled
+  tags: [ufw, firewall]

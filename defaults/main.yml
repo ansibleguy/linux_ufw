@@ -29,7 +29,7 @@ ufw_stateful: true
 default_ufw_config:
   logging: 'off'
   ipv6: 'no'
-  policy_input: 'ACCEPT'
+  policy_input: 'DROP'
   policy_output: 'ACCEPT'
   policy_forward: 'DROP'
   policy_application: 'SKIP'
