@@ -26,8 +26,8 @@ ufw_stateful: true
 
 # main ufw config
 #   can be overwritten via 'ufw_config' dictionary-variable
-default_ufw_config:
-  logging: 'off'
+defaults_uf:
+  logging: 'low'  # off/low/medium/high/full
   ipv6: 'no'
   policy_input: 'DROP'
   policy_output: 'ACCEPT'
@@ -35,7 +35,7 @@ default_ufw_config:
   policy_application: 'SKIP'
 
 # you shouldn't have a need to change these rule-defaults
-default_ufw_rule:
+defaults_rule:
   rule: 'allow'
   proto: 'any'
   log: 'no'
