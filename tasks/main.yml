@@ -49,7 +49,7 @@
 
 - name: UFW | Set logging
   community.general.ufw:
-    logging: "{{ ufw_config.logging | default(default_ufw_config.logging) }}"
+    logging: "{{ ufw_config.logging | default(defaults_ufw.logging) }}"
   when: configure_ufw_basics
   notify: reload_ufw
   tags: [ufw, firewall]

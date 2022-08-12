@@ -2,13 +2,13 @@
 
 - name: "UFW | Rule | Processing rule '{{ rule.key }}'"
   community.general.ufw:
-    rule: "{{ rule.value.rule | default(default_ufw_rule.rule) }}"
-    proto: "{{ rule.value.proto | default(default_ufw_rule.proto) }}"
-    log: "{{ rule.value.log | default(default_ufw_rule.log) }}"
-    from_ip: "{{ rule.value.from_ip | default(default_ufw_rule.from_ip) }}"
-    to_ip: "{{ rule.value.to_ip | default(default_ufw_rule.to_ip) }}"
-    comment: "{{ rule.value.comment | default(default_ufw_rule.comment + rule.key) }}"
-    direction: "{{ rule.value.direction | default(default_ufw_rule.direction) }}"
+    rule: "{{ rule.value.rule | default(defaults_rule.rule) }}"
+    proto: "{{ rule.value.proto | default(defaults_rule.proto) }}"
+    log: "{{ rule.value.log | default(defaults_rule.log) }}"
+    from_ip: "{{ rule.value.from_ip | default(defaults_rule.from_ip) }}"
+    to_ip: "{{ rule.value.to_ip | default(defaults_rule.to_ip) }}"
+    comment: "{{ rule.value.comment | default(defaults_rule.comment + rule.key) }}"
+    direction: "{{ rule.value.direction | default(defaults_rule.direction) }}"
     port: "{{ rule.value.port }}"
     delete: "{{ delete_rule }}"
   notify: reload_ufw
@@ -18,13 +18,13 @@
 
 - name: "UFW | Rule | Processing rule '{{ rule.key }}' (w/o port restriction)"
   community.general.ufw:
-    rule: "{{ rule.value.rule | default(default_ufw_rule.rule) }}"
-    proto: "{{ rule.value.proto | default(default_ufw_rule.proto) }}"
-    log: "{{ rule.value.log | default(default_ufw_rule.log) }}"
-    from_ip: "{{ rule.value.from_ip | default(default_ufw_rule.from_ip) }}"
-    to_ip: "{{ rule.value.to_ip | default(default_ufw_rule.to_ip) }}"
-    comment: "{{ rule.value.comment | default(default_ufw_rule.comment + rule.key) }}"
-    direction: "{{ rule.value.direction | default(default_ufw_rule.direction) }}"
+    rule: "{{ rule.value.rule | default(defaults_rule.rule) }}"
+    proto: "{{ rule.value.proto | default(defaults_rule.proto) }}"
+    log: "{{ rule.value.log | default(defaults_rule.log) }}"
+    from_ip: "{{ rule.value.from_ip | default(defaults_rule.from_ip) }}"
+    to_ip: "{{ rule.value.to_ip | default(defaults_rule.to_ip) }}"
+    comment: "{{ rule.value.comment | default(defaults_rule.comment + rule.key) }}"
+    direction: "{{ rule.value.direction | default(defaults_rule.direction) }}"
     delete: "{{ delete_rule }}"
   notify: reload_ufw
   when:
@@ -33,13 +33,13 @@
 
 - name: "UFW | Rule | Processing rule '{{ rule.key }}' (at custom position)"
   community.general.ufw:
-    rule: "{{ rule.value.rule | default(default_ufw_rule.rule) }}"
-    proto: "{{ rule.value.proto | default(default_ufw_rule.proto) }}"
-    log: "{{ rule.value.log | default(default_ufw_rule.log) }}"
-    from_ip: "{{ rule.value.from_ip | default(default_ufw_rule.from_ip) }}"
-    to_ip: "{{ rule.value.to_ip | default(default_ufw_rule.to_ip) }}"
-    comment: "{{ rule.value.comment | default(default_ufw_rule.comment + rule.key) }}"
-    direction: "{{ rule.value.direction | default(default_ufw_rule.direction) }}"
+    rule: "{{ rule.value.rule | default(defaults_rule.rule) }}"
+    proto: "{{ rule.value.proto | default(defaults_rule.proto) }}"
+    log: "{{ rule.value.log | default(defaults_rule.log) }}"
+    from_ip: "{{ rule.value.from_ip | default(defaults_rule.from_ip) }}"
+    to_ip: "{{ rule.value.to_ip | default(defaults_rule.to_ip) }}"
+    comment: "{{ rule.value.comment | default(defaults_rule.comment + rule.key) }}"
+    direction: "{{ rule.value.direction | default(defaults_rule.direction) }}"
     insert: "{{ rule.value.insert | default(rule.value.position) }}"
     port: "{{ rule.value.port }}"
     delete: "{{ delete_rule }}"
@@ -50,13 +50,13 @@
 
 - name: "UFW | Rule | Processing rule '{{ rule.key }}' (w/o port restriction at custom position)"
   community.general.ufw:
-    rule: "{{ rule.value.rule | default(default_ufw_rule.rule) }}"
-    proto: "{{ rule.value.proto | default(default_ufw_rule.proto) }}"
-    log: "{{ rule.value.log | default(default_ufw_rule.log) }}"
-    from_ip: "{{ rule.value.from_ip | default(default_ufw_rule.from_ip) }}"
-    to_ip: "{{ rule.value.to_ip | default(default_ufw_rule.to_ip) }}"
-    comment: "{{ rule.value.comment | default(default_ufw_rule.comment + rule.key) }}"
-    direction: "{{ rule.value.direction | default(default_ufw_rule.direction) }}"
+    rule: "{{ rule.value.rule | default(defaults_rule.rule) }}"
+    proto: "{{ rule.value.proto | default(defaults_rule.proto) }}"
+    log: "{{ rule.value.log | default(defaults_rule.log) }}"
+    from_ip: "{{ rule.value.from_ip | default(defaults_rule.from_ip) }}"
+    to_ip: "{{ rule.value.to_ip | default(defaults_rule.to_ip) }}"
+    comment: "{{ rule.value.comment | default(defaults_rule.comment + rule.key) }}"
+    direction: "{{ rule.value.direction | default(defaults_rule.direction) }}"
     insert: "{{ rule.value.insert | default(rule.value.position) }}"
     delete: "{{ delete_rule }}"
   notify: reload_ufw

@@ -26,7 +26,7 @@ ufw_stateful: true
 
 # main ufw config
 #   can be overwritten via 'ufw_config' dictionary-variable
-defaults_uf:
+defaults_ufw:
   logging: 'low'  # off/low/medium/high/full
   ipv6: 'no'
   policy_input: 'DROP'

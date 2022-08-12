@@ -13,6 +13,8 @@
     (rule.value.present is defined and rule.value.present) or
     (rule.value.state is undefined and rule.value.present is undefined)
 
+# todo: existing unconfigured rules are not deleted.. or create duplicates
+
 - name: UFW | Stateful | Processing rules to delete
   ansible.builtin.include_tasks: rule/main.yml
   vars:
