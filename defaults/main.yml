@@ -22,7 +22,7 @@ configure_ufw_ssh_rule: true  # will check if ssh will be allowed by a rule => e
 #       existing rules will persist
 #       the variable 'state' (present/absent) will be check per rule to decide if a rule should be created or deleted
 # ufw_reset_rules: false
-ufw_stateful: true
+ufw_stateful: false  # stateful is currently a bit buggy..
 
 # main ufw config
 #   can be overwritten via 'ufw_config' dictionary-variable

@@ -40,8 +40,9 @@
     - item.value.port is defined
     - item.value.port|int == ssh_port|int
     - item.value.proto is undefined or item.value.proto == 'tcp'
-    - item.value.rule is undefined or item.value.rule == 'allow'
+    - item.value.rule is undefined or (item.value.rule == 'allow' or item.value.rule == 'limit')
     - item.value.direction is undefined or item.value.direction == 'in'
+  no_log: true  # cleaner output
   with_dict: "{{ ufw_rules }}"
 
 - name: UFW | SSH-Rule | Adding ssh rule
@@ -53,6 +54,7 @@
         proto: 'tcp'
         port: "{{ ssh_port }}"
         rule: 'limit'  # ddos prevention
+        log: true
     delete_rule: false
   no_log: true
   when: add_ssh_rule

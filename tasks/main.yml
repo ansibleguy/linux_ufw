@@ -28,10 +28,11 @@
 
 - name: UFW | Stateless rules
   ansible.builtin.import_tasks: stateless.yml
-  when:
-    - (ufw_reset_rules is defined and ufw_reset_rules) or (ufw_stateless is defined and ufw_stateless)
-    - ufw_rules is defined
-    - ufw_rules | length > 0
+  when: >
+    ((ufw_reset_rules is defined and ufw_reset_rules) or
+    (ufw_stateful is defined and not ufw_stateful)) and
+    ufw_rules is defined and
+    ufw_rules | length > 0
   tags: [ufw, firewall]
 
 - name: UFW | Checking ssh rule
@@ -41,10 +42,11 @@
 
 - name: UFW | Stateful rules
   ansible.builtin.import_tasks: stateful.yml
-  when:
-    - (ufw_reset_rules is defined and not ufw_reset_rules) or (ufw_stateful is defined and ufw_stateful)
-    - ufw_rules is defined
-    - ufw_rules | length > 0
+  when: >
+    ((ufw_reset_rules is defined and not ufw_reset_rules) or
+    (ufw_stateful is defined and ufw_stateful)) and
+    ufw_rules is defined and
+    ufw_rules | length > 0
   tags: [ufw, firewall]
 
 - name: UFW | Set logging
