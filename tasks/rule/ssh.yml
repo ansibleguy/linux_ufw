@@ -17,7 +17,7 @@
   ansible.builtin.set_fact:
     configured_ssh_port:
       stdout: '22'
-  when: configured_ssh_port.stdout == ''
+  when: not configured_ssh_port.stdout
 
 - name: UFW | SSH-Rule | Configured ssh port does not match current one
   ansible.builtin.pause:
