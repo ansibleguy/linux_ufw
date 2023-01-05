@@ -23,7 +23,7 @@
     group: 'root'
     mode: 0644
   when: configure_ufw_basics
-  notify: reload_ufw
+  notify: Reload-UFW
   tags: [ufw, firewall]
 
 - name: UFW | Stateless rules
@@ -53,7 +53,7 @@
   community.general.ufw:
     logging: "{{ ufw_config.logging | default(defaults_ufw.logging) }}"
   when: configure_ufw_basics
-  notify: reload_ufw
+  notify: Reload-UFW
   tags: [ufw, firewall]
 
 - name: UFW | Enable ufw

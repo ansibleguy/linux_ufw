@@ -8,7 +8,9 @@
     ssh_port: "{{ ansible_port | default('22') }}"
 
 - name: UFW | SSH-Rule | Checking configured ssh port
-  ansible.builtin.shell: "cat /etc/ssh/sshd_config | grep -e '^Port' | cut -d' ' -f2"
+  ansible.builtin.shell: |
+    set -o pipefail
+    cat /etc/ssh/sshd_config | grep -e '^Port' | cut -d' ' -f2
   register: configured_ssh_port
   changed_when: false
   check_mode: false
