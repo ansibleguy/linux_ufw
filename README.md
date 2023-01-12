@@ -11,6 +11,17 @@ Ansible Role to deploy/configure the software firewall 'UFW' on a debian-based l
 **Tested:**
 * Debian 11
 
+## Install
+
+```bash
+ansible-galaxy install ansibleguy.linux_ufw
+
+# or to custom role-path
+ansible-galaxy install ansibleguy.linux_ufw --roles-path ./roles
+
+# install dependencies
+ansible-galaxy install -r requirements.yml
+```
 
 ## Functionality
 
@@ -42,11 +53,6 @@ This ansible role will do:
 
 
 * **Warning:** Not every setting/variable you provide will be checked for validity. Bad config might break the role!
-
-
-## Requirements
-
-* Community collection: ```ansible-galaxy install -r requirements.yml```
 
 
 ## Usage
