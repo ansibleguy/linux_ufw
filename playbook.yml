@@ -9,4 +9,4 @@
   #   the ufw config needs to be set in the inventory hosts
 
   roles:
-  - ansibleguy.linux_ufw
+    - ansibleguy.linux_ufw
