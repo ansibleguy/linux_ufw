@@ -2,7 +2,8 @@
 
 # ansible-playbook -K -D -i inventory/hosts.yml playbook.yml
 
-- hosts: all
+- name: Linux UFW
+  hosts: all
   become: true
 
   # vars:
