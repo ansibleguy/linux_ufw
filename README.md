@@ -1,3 +1,13 @@
+# DEPRECATED
+
+Using UFW as middleware in automation does not make real sense.
+
+It creates unnecessary complexity for single-rule changes!
+
+In my eyes it is not a tool that is designed to be automated.
+
+I would actually recommend using NFTables: [ansibleguy.infra_nftables](https://github.com/ansibleguy/infra_nftables) 
+
 # Ansible Role - Uncomplicated Firewall (UFW)
 
 Ansible Role to deploy/configure the software firewall 'UFW' on a debian-based linux server.
@@ -6,8 +16,7 @@ Ansible Role to deploy/configure the software firewall 'UFW' on a debian-based l
 [![YamlLint Test Status](https://badges.ansibleguy.net/linux_ufw.yamllint.svg)](https://github.com/ansibleguy/_meta_cicd/blob/latest/templates/usr/local/bin/cicd/yamllint.sh.j2)
 [![PyLint Test Status](https://badges.ansibleguy.net/linux_ufw.pylint.svg)](https://github.com/ansibleguy/_meta_cicd/blob/latest/templates/usr/local/bin/cicd/pylint.sh.j2)
 [![Ansible-Lint Test Status](https://badges.ansibleguy.net/linux_ufw.ansiblelint.svg)](https://github.com/ansibleguy/_meta_cicd/blob/latest/templates/usr/local/bin/cicd/ansiblelint.sh.j2)
-[![Ansible Galaxy](https://img.shields.io/ansible/role/62783)](https://galaxy.ansible.com/ansibleguy/linux_ufw)
-[![Ansible Galaxy Downloads](https://img.shields.io/badge/dynamic/json?color=blueviolet&label=Galaxy%20Downloads&query=%24.download_count&url=https%3A%2F%2Fgalaxy.ansible.com%2Fapi%2Fv1%2Froles%2F62783%2F%3Fformat%3Djson)](https://galaxy.ansible.com/ansibleguy/linux_ufw)
+[![Ansible Galaxy](https://badges.ansibleguy.net/galaxy.badge.svg)](https://galaxy.ansible.com/ui/standalone/roles/ansibleguy/linux_ufw)
 
 **Tested:**
 * Debian 11
