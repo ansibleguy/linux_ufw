@@ -24,6 +24,10 @@ Ansible Role to deploy/configure the software firewall 'UFW' on a debian-based l
 ## Install
 
 ```bash
+# latest
+ansible-galaxy role install git+https://github.com/ansibleguy/linux_ufw
+
+# from galaxy
 ansible-galaxy install ansibleguy.linux_ufw
 
 # or to custom role-path
