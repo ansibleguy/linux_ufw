@@ -71,6 +71,8 @@ This ansible role will do:
 
 ## Usage
 
+You want a simple Ansible GUI? Check-out my [Ansible WebUI](https://github.com/ansibleguy/webui)
+
 ### Config
 
 Just define the 'ufw_rules' dictionary as needed:
