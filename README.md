@@ -62,7 +62,7 @@ This ansible role will do:
 
 * **Note:** Most of the role's functionality can be opted in or out.
 
-  For all available options - see the default-config located in the main defaults-file!
+  For all available options - see the default-config located in [the main defaults-file](https://github.com/ansibleguy/linux_ufw/blob/latest/defaults/main.yml)!
 
 
 * **Note:** this role currently only supports debian-based systems
